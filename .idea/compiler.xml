@@ -6,13 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Exercise_1_Mocking_And_Stubbing" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Exercise_1_Mocking_And_Stubbing" target="24" />
       <module name="Exercise_1_Setting_Up_JUnit" target="24" />
       <module name="Exercise_2_Assertions" target="24" />
       <module name="Exercise_3_AAA_Pattern" target="24" />
+      <module name="Mockito_Exercises" target="24" />
     </bytecodeTargetLevel>
   </component>
 </project>
