@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Exercise_1_Mockito_And_Stabbing" />
+        <module name="Exercise_1_Mockito_And_Stubbing" />
+        <module name="CalculatorProject" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Exercise1_Mockito_And_Stubbing" target="1.8" />
+      <module name="Exercise_1_Mocking_And_Stubbing" target="24" />
+      <module name="Exercise_1_Mockito_And_Stabbing" target="1.8" />
+      <module name="Exercise_1_Mockito_And_Stubbing" target="1.8" />
+      <module name="Exercise_1_Setting_Up_JUnit" target="24" />
+      <module name="Exercise_2_Assertions" target="24" />
+      <module name="Exercise_3_AAA_Pattern" target="24" />
+      <module name="Mockito_Exercises" target="24" />
+      <module name="Module4_Mockito_Exercises" target="1.5" />
+      <module name="Module_4_Mocking_And_Stubbing" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
