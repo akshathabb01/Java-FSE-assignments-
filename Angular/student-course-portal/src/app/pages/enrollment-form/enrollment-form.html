@@ -1,0 +1,113 @@
+<div class="enrollment-container">
+  <h2>Student Enrollment Request</h2>
+
+  <!-- Step 39: Form with #enrollForm="ngForm" -->
+  <form #enrollForm="ngForm" (ngSubmit)="onSubmit(enrollForm)" class="form-card" novalidate>
+
+    <!-- Student Name -->
+    <div class="form-group">
+      <label for="studentName">Student Name *</label>
+      <input
+        type="text"
+        id="studentName"
+        name="studentName"
+        [(ngModel)]="enrollmentData.studentName"
+        #nameCtrl="ngModel"
+        required
+        minlength="3"
+        placeholder="Enter your full name"
+      />
+      <!-- Step 44: Contextual validation messages -->
+      <div *ngIf="nameCtrl.touched && nameCtrl.errors" class="error-msg">
+        <span *ngIf="nameCtrl.errors['required']">Name is required</span>
+        <span *ngIf="nameCtrl.errors['minlength']">Name must be at least 3 characters</span>
+      </div>
+    </div>
+
+    <!-- Student Email -->
+    <div class="form-group">
+      <label for="studentEmail">Student Email *</label>
+      <input
+        type="email"
+        id="studentEmail"
+        name="studentEmail"
+        [(ngModel)]="enrollmentData.studentEmail"
+        #emailCtrl="ngModel"
+        required
+        email
+        placeholder="example@domain.com"
+      />
+      <div *ngIf="emailCtrl.touched && emailCtrl.errors" class="error-msg">
+        <span *ngIf="emailCtrl.errors['required']">Email is required</span>
+        <span *ngIf="emailCtrl.errors['email']">Please enter a valid email address</span>
+      </div>
+    </div>
+
+    <!-- Course ID -->
+    <div class="form-group">
+      <label for="courseId">Course ID *</label>
+      <input
+        type="number"
+        id="courseId"
+        name="courseId"
+        [(ngModel)]="enrollmentData.courseId"
+        #courseCtrl="ngModel"
+        required
+        placeholder="e.g. 101"
+      />
+      <div *ngIf="courseCtrl.touched && courseCtrl.errors" class="error-msg">
+        <span *ngIf="courseCtrl.errors['required']">Course ID is required</span>
+      </div>
+    </div>
+
+    <!-- Preferred Semester -->
+    <div class="form-group">
+      <label for="preferredSemester">Preferred Semester</label>
+      <select
+        id="preferredSemester"
+        name="preferredSemester"
+        [(ngModel)]="enrollmentData.preferredSemester"
+      >
+        <option value="Odd">Odd</option>
+        <option value="Even">Even</option>
+      </select>
+    </div>
+
+    <!-- Agree to Terms Checkbox -->
+    <div class="form-group checkbox-group">
+      <label class="checkbox-label">
+        <input
+          type="checkbox"
+          id="agreeToTerms"
+          name="agreeToTerms"
+          [(ngModel)]="enrollmentData.agreeToTerms"
+          #termsCtrl="ngModel"
+          required
+        />
+        I agree to the enrollment terms and conditions *
+      </label>
+      <div *ngIf="termsCtrl.touched && termsCtrl.errors" class="error-msg">
+        <span *ngIf="termsCtrl.errors['required']">You must agree to the terms to proceed</span>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-group">
+      <!-- Step 41: Submit button disabled when form is invalid -->
+      <button type="submit" [disabled]="enrollForm.invalid" class="btn-primary">
+        Submit
+      </button>
+
+      <!-- Step 47: Reset button clearing form states -->
+      <button type="button" (click)="enrollForm.resetForm()" class="btn-secondary">
+        Reset
+      </button>
+    </div>
+
+  </form>
+
+  <!-- Step 46: Success Alert -->
+  <div *ngIf="isSubmitted" class="success-alert">
+    Enrollment request submitted successfully!
+  </div>
+</div>

@@ -11,7 +11,7 @@
     <div *ngIf="courses.length > 0; else noCourses" class="courses-grid">
       <!-- Step 26: *ngFor with trackBy -->
       <app-course-card
-        *for="let c of courses; trackBy: trackByCourseId"
+        *ngFor="let c of courses; trackBy: trackByCourseId"
         [course]="c"
         (enrollRequested)="onEnroll($event)">
       </app-course-card>
