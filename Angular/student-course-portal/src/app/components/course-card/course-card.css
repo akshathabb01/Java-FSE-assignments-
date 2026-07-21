@@ -1,0 +1,25 @@
+.course-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: all 0.3s ease;
+}
+
+/* Step 29 */
+.card--enrolled {
+  background-color: #f0fdf4;
+}
+
+.card--full {
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.15);
+}
+
+/* Step 31 */
+.expanded {
+  min-height: 220px;
+}
+
+.badge-passed { background: #dcfce7; color: #166534; }
+.badge-failed { background: #fee2e2; color: #991b1b; }
+.badge-pending { background: #f3f4f6; color: #4b5563; }

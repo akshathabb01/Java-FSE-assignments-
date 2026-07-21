@@ -1,1 +1,27 @@
-<p>course-list works!</p>
+<div class="course-list-container">
+  <h2>Available Courses</h2>
+
+  <!-- Step 25 & 28: *ngIf with loading spinner & else block -->
+  <div *ngIf="isLoading; else courseContent" class="loading-spinner">
+    <p>Loading courses...</p>
+  </div>
+
+  <ng-template #courseContent>
+    <!-- Step 28: *ngIf with else template for empty list -->
+    <div *ngIf="courses.length > 0; else noCourses" class="courses-grid">
+      <!-- Step 26: *ngFor with trackBy -->
+      <app-course-card
+        *for="let c of courses; trackBy: trackByCourseId"
+        [course]="c"
+        (enrollRequested)="onEnroll($event)">
+      </app-course-card>
+    </div>
+  </ng-template>
+
+  <!-- Step 28: No courses fallback block -->
+  <ng-template #noCourses>
+    <p class="empty-msg">No courses available.</p>
+  </ng-template>
+
+  <p *ngIf="selectedCourseId">Selected course ID: {{ selectedCourseId }}</p>
+</div>

@@ -1,0 +1,27 @@
+<!-- Step 34 & 37: Configurable appHighlight directive -->
+<div class="course-card" [ngClass]="cardClasses" [ngStyle]="cardStyle" [appHighlight]="'#fef08a'">
+  <div class="card-header">
+    <h3>{{ course.name }}</h3>
+    <span class="badge">{{ course.code }}</span>
+  </div>
+
+  <div [ngSwitch]="course.gradeStatus" class="status-container">
+    <span *ngSwitchCase="'passed'" class="badge badge-passed">Passed</span>
+    <span *ngSwitchCase="'failed'" class="badge badge-failed">Failed</span>
+    <span *ngSwitchDefault class="badge badge-pending">Pending</span>
+  </div>
+
+  <!-- Step 36: creditLabel pipe -->
+  <p class="credits">Credits: <b>{{ course.credits | creditLabel }}</b></p>
+
+  <div *ngIf="isExpanded" class="details-body">
+    <p>Detailed syllabus and instructor details loaded here.</p>
+  </div>
+
+  <div class="card-actions">
+    <button class="btn-enroll" (click)="onEnroll()">Enroll</button>
+    <button class="btn-secondary" (click)="toggleDetails()">
+      {{ isExpanded ? 'Hide Details' : 'Show Details' }}
+    </button>
+  </div>
+</div>

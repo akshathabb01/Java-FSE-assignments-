@@ -1,0 +1,14 @@
+/* Reset default browser margins */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+/* Wrap main page content in standard padding */
+app-home, app-course-list, app-student-profile {
+  display: block;
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}

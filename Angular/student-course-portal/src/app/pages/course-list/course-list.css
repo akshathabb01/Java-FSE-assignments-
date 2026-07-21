@@ -1,0 +1,14 @@
+.course-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.courses-grid {
+  display: grid;
+  /* Fills available screen width with flexible cards */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
