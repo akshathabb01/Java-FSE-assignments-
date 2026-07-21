@@ -1,0 +1,22 @@
+nav{
+    background:#1976d2;
+    color:white;
+    padding:18px;
+    display:flex;
+    align-items:center;
+}
+
+nav h2{
+    margin-right:40px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-right:25px;
+    font-weight:bold;
+}
+
+nav a:hover{
+    text-decoration:underline;
+}

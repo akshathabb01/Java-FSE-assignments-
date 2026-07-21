@@ -1,0 +1,11 @@
+/* Global Styles */
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+}
+
+* {
+    box-sizing: border-box;
+}
