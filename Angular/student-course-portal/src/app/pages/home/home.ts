@@ -1,28 +1,22 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CourseListComponent } from '../course-list/course-list';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FormsModule],
+  imports: [CommonModule, FormsModule, CourseListComponent],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-export class HomeComponent implements OnInit, OnDestroy {
-  portalName: string = 'Student Course Portal';
-  isPortalActive: boolean = true;
-  message: string = '';
-  searchTerm: string = '';
+export class HomeComponent {
+  portalName = 'Student Course Portal';
+  isPortalActive = true;
+  message = '';
+  searchTerm = 'Angular';
 
   onEnrollClick(): void {
-    this.message = 'Enrollment opened!';
-  }
-
-  ngOnInit(): void {
-    console.log('HomeComponent initialised — courses loaded');
-  }
-
-  ngOnDestroy(): void {
-    console.log('HomeComponent destroyed');
+    this.message = 'Enrollment process initiated!';
   }
 }
