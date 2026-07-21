@@ -1,0 +1,40 @@
+<div class="detail-container" *ngIf="course; else notFound" style="padding: 2rem 4rem; max-width: 800px;">
+  <button (click)="goBack()" class="btn-secondary" style="margin-bottom: 1.5rem; cursor: pointer; padding: 0.5rem 1rem;">
+    ← Back to Courses
+  </button>
+
+  <div style="background: white; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h2 style="margin: 0; color: #1e293b;">{{ course.name }}</h2>
+      <span style="background: #f1f5f9; padding: 0.3rem 0.8rem; border-radius: 4px; font-weight: bold; color: #475569;">
+        {{ course.code }}
+      </span>
+    </div>
+
+    <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid #e2e8f0;" />
+
+    <div style="color: #334155; line-height: 1.8;">
+      <p><strong>Course ID:</strong> {{ course.id }}</p>
+      <p><strong>Credits:</strong> {{ course.credits }} Credits</p>
+      <p>
+        <strong>Status:</strong>
+        <span style="font-weight: bold; text-transform: uppercase;">{{ course.gradeStatus }}</span>
+      </p>
+    </div>
+
+    <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+      <h4 style="margin-bottom: 0.5rem; color: #1e293b;">Course Overview</h4>
+      <p style="color: #64748b; margin: 0;">
+        This course covers core modules and hands-on portal exercises. Dynamic parameters were successfully read from the route URL.
+      </p>
+    </div>
+  </div>
+</div>
+
+<ng-template #notFound>
+  <div style="padding: 2rem 4rem;">
+    <h2>Course Not Found</h2>
+    <p>No course matching this ID was found.</p>
+    <button (click)="goBack()" class="btn-primary">Back to Courses</button>
+  </div>
+</ng-template>

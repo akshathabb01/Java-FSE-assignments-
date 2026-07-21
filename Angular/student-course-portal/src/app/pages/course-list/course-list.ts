@@ -1,43 +1,80 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Course } from '../../models/course';
 import { CourseService } from '../../services/course';
-import { CourseCardComponent, Course } from '../../components/course-card/course-card';
+import { CourseCardComponent } from '../../components/course-card/course-card';
 
 @Component({
   selector: 'app-course-list',
   standalone: true,
-  imports: [CommonModule, CourseCardComponent],
+  imports: [CommonModule, FormsModule, CourseCardComponent],
   templateUrl: './course-list.html',
   styleUrl: './course-list.css'
 })
 export class CourseListComponent implements OnInit {
-  isLoading: boolean = true; // Step 25
-  selectedCourseId: number | null = null;
+  courses: Course[] = [];
+  filteredCourses: Course[] = [];
+  isLoading = true;
+  searchTerm = '';
 
-  courses: Course[] = [
-    { id: 101, name: 'Angular Framework', code: 'CS101', credits: 4, gradeStatus: 'passed', isEnrolled: true },
-    { id: 102, name: 'Data Structures & Algorithms', code: 'CS102', credits: 3, gradeStatus: 'failed', isEnrolled: false },
-    { id: 103, name: 'Database Management Systems', code: 'CS103', credits: 3, gradeStatus: 'pending', isEnrolled: false },
-    { id: 104, name: 'Cloud Computing Architecture', code: 'CS104', credits: 4, gradeStatus: 'passed', isEnrolled: false },
-    { id: 105, name: 'Web Application Security', code: 'CS105', credits: 1, gradeStatus: 'pending', isEnrolled: false }
-  ];
+  constructor(
+    private courseService: CourseService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    // Step 25: Simulate delay for loading state
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 1500);
+    // Pull courses from service
+    this.courses = this.courseService.getCourses();
+
+    // Step 71: Check URL query params on load (?search=...)
+    const querySearch = this.route.snapshot.queryParamMap.get('search');
+    if (querySearch) {
+      this.searchTerm = querySearch;
+      this.filterCourses();
+    } else {
+      this.filteredCourses = [...this.courses];
+    }
+
+    this.isLoading = false;
   }
 
-  // Step 26: trackBy function
-  // trackBy helps Angular identify which items have changed, added, or removed.
-  // Instead of re-rendering the entire DOM list on array changes, Angular re-uses existing elements and only updates modified ones.
+  // Step 71: Triggered live on every keypress
+  onSearchChange(): void {
+    const cleanSearch = this.searchTerm.trim();
+
+    // Update URL parameter in address bar
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { search: cleanSearch || null },
+      queryParamsHandling: 'merge'
+    });
+
+    this.filterCourses();
+  }
+
+  filterCourses(): void {
+    const query = this.searchTerm.trim().toLowerCase();
+
+    if (!query) {
+      this.filteredCourses = [...this.courses];
+      return;
+    }
+
+    this.filteredCourses = this.courses.filter(course =>
+      course.name.toLowerCase().includes(query) ||
+      course.code.toLowerCase().includes(query)
+    );
+  }
+
+  // Step 70: Card click navigation to /courses/:id
+  goToDetail(courseId: number): void {
+    this.router.navigate(['/courses', courseId]);
+  }
+
   trackByCourseId(index: number, course: Course): number {
     return course.id;
-  }
-
-  onEnroll(courseId: number): void {
-    console.log('Enrolling in course: ' + courseId);
-    this.selectedCourseId = courseId;
   }
 }
