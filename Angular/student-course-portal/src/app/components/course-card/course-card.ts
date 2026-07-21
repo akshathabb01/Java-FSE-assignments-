@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from
 import { CommonModule } from '@angular/common';
 
 // Updated imports to match your exact file names
+import { EnrollmentService } from '../../services/enrollment';
 import { HighlightDirective } from '../../directives/highlight';
 import { CreditLabelPipe } from '../../pipes/credit-label-pipe';
 

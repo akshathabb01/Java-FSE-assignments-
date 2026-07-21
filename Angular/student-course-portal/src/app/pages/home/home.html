@@ -7,11 +7,13 @@
   <div class="dashboard">
     <div class="stat-card">
       <p>Courses Available</p>
-      <b>12</b>
+      <!-- Bound to live CourseService count -->
+      <b>{{ coursesCount }}</b>
     </div>
     <div class="stat-card">
       <p>Enrolled Courses</p>
-      <b>3</b>
+      <!-- Bound to live EnrollmentService count -->
+      <b>{{ enrollmentService.getEnrolledCourses().length }}</b>
     </div>
     <div class="stat-card">
       <p>GPA</p>
@@ -20,10 +22,12 @@
   </div>
 
   <div class="actions-section">
-    <div>
+    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
       <button class="btn-primary" [disabled]="!isPortalActive" (click)="onEnrollClick()">Enroll Now</button>
-      <p style="margin-top: 0.5rem; color: #16a34a; font-weight: 500;">{{ message }}</p>
+      <button class="btn-secondary" (click)="addSampleCourse()">+ Add Course to Service</button>
     </div>
+
+    <p style="margin-top: 0.5rem; color: #16a34a; font-weight: 500;">{{ message }}</p>
 
     <div class="search-box">
       <input [(ngModel)]="searchTerm" placeholder="Search courses..." />
@@ -31,6 +35,9 @@
     </div>
   </div>
 
-  <!-- Course list placed at container level for proper full-width rendering -->
+  <!-- Hierarchical DI Scoped Notification Widget -->
+  <app-notification></app-notification>
+
+  <!-- Live Course List -->
   <app-course-list></app-course-list>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CourseService } from '../../services/course';
 import { CourseCardComponent, Course } from '../../components/course-card/course-card';
 
 @Component({
